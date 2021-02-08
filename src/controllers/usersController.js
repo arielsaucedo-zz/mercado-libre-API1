@@ -218,7 +218,7 @@ module.exports = {
             state: 1,
             userId: req.session.user.id,
             sellerId: product.user.id,
-            productId: product.id,
+            productId: product.productId,
           });
         })
         .then((item) => res.redirect("/users/cart"))
