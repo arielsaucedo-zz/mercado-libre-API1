@@ -28,7 +28,7 @@ module.exports = {
                 state: 1,
                 userId: req.body.userId,
                 sellerId: product.user.id,
-                productId: product.id,
+                productId: req.body.productId,
               });
             })
             .then((item) => {
@@ -40,7 +40,9 @@ module.exports = {
                     data : item
                 }
                 return res.json(respuesta)
+                
             })
+            
             .catch((e) => {
                 console.log(e)
                 let respuesta = {
@@ -68,5 +70,22 @@ module.exports = {
                 return res.json(respuesta)
              })     
         }
-      },
-}
+    },
+    deleteFromCart(req, res) {
+      Item.destroy({
+        where: {
+          id: req.body.itemId,
+        },
+        force: true,
+      })
+        .then(function(resultado) {
+          let respuesta = {
+            meta : {
+                status : 200,
+                Method : "DELETE"
+            }
+        }
+        res.json(respuesta)  
+    })
+    .catch((e) => console.log(e))
+}}

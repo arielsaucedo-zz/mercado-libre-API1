@@ -6,5 +6,6 @@ const router = express.Router();
 const itemsController = require('../../controllers/api/itemsController');
 
 router.post('/', itemsController.addToCart); 
+router.post('/', itemsController.deleteFromCart);
 
 module.exports = router;
